@@ -34,6 +34,8 @@ bind log  K !<sh -c "vim -p $(git changed %(commit))"
 
 In this example, I use vim (`-p` is opening files in tabs), but it can be changed to any editor, also binding key (`K`) as well.
 
+![git-changed](https://cloud.githubusercontent.com/assets/19625/6544632/686b5ad6-c527-11e4-9dff-e655ff6fef8a.gif)
+
 ## License
 
 Licensed under the [MIT license](http://banyan.mit-license.org/)
