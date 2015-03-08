@@ -21,7 +21,7 @@ describe Git::Changed do
       context 'when argument is passed' do
         it "outputs modified files to stdout" do
           first_commit do
-            expect{ Git::Changed.changed(Git::Changed.latest_hash) }.to output("a.txt\n").to_stdout
+            expect{ Git::Changed.changed(Git::Changed.latest_hash) }.to output(/a\.txt/).to_stdout
           end
         end
       end
@@ -29,7 +29,7 @@ describe Git::Changed do
       context 'when argument is not passed' do
         it "outputs modified files to stdout" do
           first_commit do
-            expect{ Git::Changed.changed }.to output("a.txt\n").to_stdout
+            expect{ Git::Changed.changed }.to output(/a\.txt/).to_stdout
           end
         end
       end
@@ -53,7 +53,7 @@ describe Git::Changed do
           `git merge --no-ff c-txt` # Add no-ff option to immitate GitHub pull requests
           `git merge --no-ff b-txt`
 
-          expect{ Git::Changed.changed }.to output("b.txt\n").to_stdout
+          expect{ Git::Changed.changed }.to output(/b\.txt/).to_stdout
         end
       end
     end
