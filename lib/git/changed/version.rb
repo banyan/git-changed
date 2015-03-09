@@ -1,5 +1,5 @@
 module Git
-  module Changed
+  module Modified
     VERSION = "0.1.0"
   end
 end

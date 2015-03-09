@@ -1,17 +1,17 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'git/changed/version'
+require 'git/modified/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "git-changed"
-  spec.version       = Git::Changed::VERSION
+  spec.name          = "git-modified"
+  spec.version       = Git::Modified::VERSION
   spec.authors       = ["Kohei Hasegawa"]
   spec.email         = ["ameutau@gmail.com"]
 
   spec.summary       = %q{A Git subcommand to list modified files in git commit}
   spec.description   = %q{A Git subcommand to list modified files in git commit}
-  spec.homepage      = "https://github.com/banyan/git-changed"
+  spec.homepage      = "https://github.com/banyan/git-modified"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }

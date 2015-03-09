@@ -1,8 +1,8 @@
-require "git/changed/version"
+require "git/modified/version"
 require 'contracts'
 
 module Git
-  module Changed
+  module Modified
     include Contracts
     include Contracts::Modules
 
@@ -12,17 +12,17 @@ module Git
       when '-v', '--version'
         version
       else
-        changed ARGV.first
+        modified ARGV.first
       end
     end
 
     Contract String => nil
     def self.version
-      puts Git::Changed::VERSION
+      puts Git::Modified::VERSION
     end
 
     Contract Maybe[String] => nil
-    def self.changed(hash = nil)
+    def self.modified(hash = nil)
       if hash.nil?
         show_modified_files_on_working_tree
       else
