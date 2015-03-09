@@ -1,4 +1,0 @@
-#!/usr/bin/env ruby
-
-require 'git/changed'
-Git::Changed.run
