@@ -1,6 +1,6 @@
 # git-modified [![Circle CI](https://img.shields.io/circleci/project/banyan/git-modified.svg)](https://circleci.com/gh/banyan/git-modified) [![Rubygems](https://img.shields.io/gem/v/git-modified.svg)](https://rubygems.org/gems/git-modified)
 
-A Git subcommand to list modified files in git commit
+A Git subcommand to list modified files in git commit or from current working tree
 
 ## Installation
 
@@ -10,11 +10,15 @@ $ gem install git-modified
 
 ## Usage
 
+* Get modified files from current working tree if no argument is given
+
 ```shell
-$ git modified # get latest commit of modified files if argument is not passed
-activerecord/lib/active_record/transactions.rb
-activerecord/test/cases/transactions_test.rb
+$ touch a.txt
+$ git modified
+a.txt
 ```
+
+* Get modified files in git commit if argument is given
 
 ```shell
 $ git modified fbb1185
