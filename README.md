@@ -27,6 +27,14 @@ actionpack/lib/action_dispatch/testing/integration.rb
 
 ## Tips
 
+### Open files with editor
+
+```shell
+$ vim -p `git modified`
+```
+
+### Open files with tig
+
 I often use [tig](https://github.com/jonas/tig) while I'm writing codes. No matter how I feel it's perfect, I would find mistakes soon when I check with tig.
 Tig has `e` mode which opens file in editor, yet cursol should be on the files. `git-modified` is handy if you would like to open files with commit sets. It can be available with following tig bindings in `.tigrc`.
 
