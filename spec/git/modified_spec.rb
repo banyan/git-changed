@@ -37,6 +37,27 @@ describe Git::Modified do
           end
         end
       end
+
+      context 'when there are deleted files in working trees' do
+        context 'when in workspace' do
+          it "does not output modified files to stdout" do
+            first_commit do
+              `rm a.txt`
+              expect{ Git::Modified.modified }.to output('').to_stdout
+            end
+          end
+        end
+
+        context 'when in index' do
+          it "does not output modified files to stdout" do
+            first_commit do
+              `rm a.txt`
+              `git add -u a.txt`
+              expect{ Git::Modified.modified }.to output('').to_stdout
+            end
+          end
+        end
+      end
     end
 
     context 'when argument is passed' do

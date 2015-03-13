@@ -32,7 +32,10 @@ module Git
 
     Contract nil => nil
     def self.show_modified_files_on_working_tree
-      puts `git status --porcelain`.each_line.map { |x| x[3..-1] }
+      puts `git status --porcelain` \
+        .each_line \
+        .reject { |line| line[0..1].split('').lazy.any? { |x| x == 'D' } } \
+        .map    { |line| line[3..-1] }
     end
 
     Contract Maybe[String] => nil
