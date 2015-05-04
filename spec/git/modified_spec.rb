@@ -33,7 +33,7 @@ describe Git::Modified do
             `git add .`
             `touch c.txt`
 
-            expect{ Git::Modified.modified }.to output(/b\.txt\nc\.txt/).to_stdout
+            expect{ Git::Modified.modified }.to output(/^b\.txt\nc\.txt$/).to_stdout
           end
         end
       end
@@ -84,9 +84,9 @@ describe Git::Modified do
         it "outputs renamed file to stdout" do
           first_commit do
             `mv a.txt b.txt`
-            expect{ Git::Modified.modified }.to output("b.txt\n").to_stdout
+            expect{ Git::Modified.modified }.to output(/^b\.txt$/).to_stdout
             `git add -A`
-            expect{ Git::Modified.modified }.to output("b.txt\n").to_stdout
+            expect{ Git::Modified.modified }.to output(/^b\.txt$/).to_stdout
           end
         end
       end
@@ -95,7 +95,7 @@ describe Git::Modified do
     context 'when argument is passed' do
       it "outputs modified files to stdout" do
         first_commit do
-          expect{ Git::Modified.modified(Git::Modified.latest_hash) }.to output(/a\.txt/).to_stdout
+          expect{ Git::Modified.modified(Git::Modified.latest_hash) }.to output(/^a\.txt$/).to_stdout
         end
       end
     end
@@ -118,7 +118,7 @@ describe Git::Modified do
           `git merge --no-ff c-txt` # Add no-ff option to immitate GitHub pull requests
           `git merge --no-ff b-txt`
 
-          expect{ Git::Modified.modified(Git::Modified.latest_hash) }.to output(/b\.txt/).to_stdout
+          expect{ Git::Modified.modified(Git::Modified.latest_hash) }.to output(/^b\.txt$/).to_stdout
         end
       end
     end
