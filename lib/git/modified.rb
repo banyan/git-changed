@@ -36,7 +36,7 @@ module Git
         .each_line \
         .reject { |line| line[0..1].split('').lazy.any? { |x| x == 'D' } } \
         .reject { |line| line.match /\.(jpe?g|png|gif|svg|eot|mp3|ttf|wav|wof)$/i } \
-        .map    { |line| line[3..-1] }
+        .map    { |line| if line[0] == 'R' then line.split(' ')[-1] else line[3..-1] end }
     end
 
     Contract Maybe[String] => nil

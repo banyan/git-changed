@@ -79,6 +79,17 @@ describe Git::Modified do
           end
         end
       end
+
+      context 'when files are renamed' do
+        it "outputs renamed file to stdout" do
+          first_commit do
+            `mv a.txt b.txt`
+            expect{ Git::Modified.modified }.to output("b.txt\n").to_stdout
+            `git add -A`
+            expect{ Git::Modified.modified }.to output("b.txt\n").to_stdout
+          end
+        end
+      end
     end
 
     context 'when argument is passed' do
