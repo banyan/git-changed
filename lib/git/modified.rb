@@ -35,6 +35,7 @@ module Git
       puts `git status --porcelain` \
         .each_line \
         .reject { |line| line[0..1].split('').lazy.any? { |x| x == 'D' } } \
+        .reject { |line| line.match /\.(jpe?g|png|gif|svg|eot|mp3|ttf|wav|wof)$/i } \
         .map    { |line| line[3..-1] }
     end
 

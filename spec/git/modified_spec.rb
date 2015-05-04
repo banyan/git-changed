@@ -58,6 +58,27 @@ describe Git::Modified do
           end
         end
       end
+
+      context 'when there are binary files in working trees' do
+        context 'when in workspace' do
+          it "does not output binary files to stdout" do
+            first_commit do
+              `touch a.png`
+              expect{ Git::Modified.modified }.to output('').to_stdout
+            end
+          end
+        end
+
+        context 'when in index' do
+          it "does not output binary files to stdout" do
+            first_commit do
+              `touch a.png`
+              `git add -u a.png`
+              expect{ Git::Modified.modified }.to output('').to_stdout
+            end
+          end
+        end
+      end
     end
 
     context 'when argument is passed' do
