@@ -4,7 +4,6 @@ require 'contracts'
 module Git
   module Modified
     include Contracts
-    include Contracts::Modules
 
     Contract Maybe[String] => nil
     def self.run
