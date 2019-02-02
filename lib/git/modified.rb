@@ -1,11 +1,7 @@
 require "git/modified/version"
-require 'contracts'
 
 module Git
   module Modified
-    include Contracts
-
-    Contract Maybe[String] => nil
     def self.run
       case ARGV.first
       when '-v', '--version'
@@ -15,12 +11,10 @@ module Git
       end
     end
 
-    Contract String => nil
     def self.version
       puts Git::Modified::VERSION
     end
 
-    Contract Maybe[String] => nil
     def self.modified(hash = nil)
       if hash.nil?
         show_modified_files_on_working_tree
@@ -29,7 +23,6 @@ module Git
       end
     end
 
-    Contract nil => nil
     def self.show_modified_files_on_working_tree
       puts `git status --short` \
         .each_line \
@@ -38,7 +31,6 @@ module Git
         .map    { |line| if line[0] == 'R' then line.split(' ')[-1] else line[3..-1] end }
     end
 
-    Contract Maybe[String] => nil
     def self.show_modified_files_on_commit(hash)
       hashes = `git show --summary --format="%P" #{hash} | head -n 1`.split ' '
 
@@ -49,7 +41,6 @@ module Git
       end
     end
 
-    Contract nil => String
     def self.latest_hash
       `git log --pretty=format:'%h' -n 1`
     end
