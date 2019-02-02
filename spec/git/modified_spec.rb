@@ -90,6 +90,20 @@ describe Git::Modified do
           end
         end
       end
+
+      context 'when dir is changed' do
+        it "shows outputs from changed dir" do
+          first_commit do
+            `mkdir foo`
+            `touch foo/a.txt`
+            `git add .`
+
+            Dir.chdir 'foo' do
+              expect{ Git::Modified.modified }.to output(/^a\.txt$/).to_stdout
+            end
+          end
+        end
+      end
     end
 
     context 'when argument is passed' do
