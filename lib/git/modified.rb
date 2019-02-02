@@ -31,7 +31,7 @@ module Git
 
     Contract nil => nil
     def self.show_modified_files_on_working_tree
-      puts `git status --porcelain` \
+      puts `git status --short` \
         .each_line \
         .reject { |line| line[0..1].split('').lazy.any? { |x| x == 'D' } } \
         .reject { |line| line.match /\.(jpe?g|png|gif|svg|eot|mp3|ttf|wav|wof)$/i } \
