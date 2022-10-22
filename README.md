@@ -1,3 +1,5 @@
+Taken over by https://github.com/banyan/git_modified_files
+
 # git-modified [![Circle CI](https://img.shields.io/circleci/project/banyan/git-modified.svg)](https://circleci.com/gh/banyan/git-modified) [![Rubygems](https://img.shields.io/gem/v/git-modified.svg)](https://rubygems.org/gems/git-modified)
 
 A Git subcommand to list modified files in git commit or from current working tree
